@@ -6,7 +6,9 @@ module.exports = {
 };
 
 function getRecipes() {
-  return db("recipes");
+  return db("recipes")
+    .join("dishes", "recipes.dishes_id", "dishes.dish_id")
+    .select("recipes.recipe_id", "recipes.recipe_name", "dishes.name");
 }
 
 function addRecipe(recipe) {
