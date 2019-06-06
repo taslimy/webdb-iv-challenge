@@ -2,6 +2,7 @@ const express = require("express");
 const server = express();
 
 server.use(express());
+server.use(express.json());
 server.use(logger);
 
 server.get("/", (req, res) => {
@@ -9,6 +10,8 @@ server.get("/", (req, res) => {
 });
 
 // Define Routes
+server.use("/api/dishes", require("./routes/dishes-router"));
+server.use("/api/recipes", require('./routes/recipes-router'));
 
 // Logger
 function logger(req, res, next) {
